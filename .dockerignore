@@ -1,0 +1,28 @@
+# 忽略不必要的文件和目录
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+*.md
+
+# 忽略测试文件
+campus-backend/src/test
+campus-backend/target/test-classes
+
+# 忽略日志文件
+*.log
+logs/
+
+# 忽略本地开发文件
+campus-backend/target/maven-status
+campus-backend/tokens.csv
+
+# 忽略文档
+docs/
+
+# 忽略前端（如果暂时不部署前端）
+campus-frontend/
+
+# 忽略数据目录
+data/

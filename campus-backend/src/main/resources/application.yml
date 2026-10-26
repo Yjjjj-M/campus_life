@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 50
+    accept-count: 100
+
+spring:
+  application:
+    name: campus-life-platform
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DB:campus_life}?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD}
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 20
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DB:0}
+      lettuce:
+        pool:
+          max-active: 100
+          max-idle: 50
+          min-idle: 20
+          time-between-eviction-runs: 10s
+
+mybatis-plus:
+  type-aliases-package: com.campus.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.campus: debug
+
+jwt:
+  secret: ${JWT_SECRET:campus-life-platform-secret-key-change-in-production}
+  expiration: ${JWT_EXPIRATION:604800000}  # 7天，方便压测

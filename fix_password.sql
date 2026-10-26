@@ -1,0 +1,1 @@
+UPDATE user SET password = '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6CQARi/lVnL6BQqXOqH8KjW' WHERE phone = '13800000000';
