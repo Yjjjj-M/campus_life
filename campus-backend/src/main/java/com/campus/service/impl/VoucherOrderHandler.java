@@ -319,8 +319,8 @@ public class VoucherOrderHandler {
         detail.setRules(rules);
         orderDetailMapper.insert(detail);
         
-        // 8. 调度订单超时取消（1 分钟后自动取消）
-        orderTimeoutService.scheduleOrderTimeout(orderId, 1);
+        // 8. 调度订单超时取消（15分钟后自动取消）
+        orderTimeoutService.scheduleOrderTimeout(orderId, 15);
         
         log.info("秒杀订单创建完成：orderId={}, orderNo={}, userId={}, voucherId={}", 
                 orderId, orderNo, userId, voucherId);

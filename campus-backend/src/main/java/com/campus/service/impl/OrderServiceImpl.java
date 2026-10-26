@@ -109,7 +109,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         orderDetailMapper.insert(detail);
         
         // 7. 调度订单超时取消（15分钟后自动取消）
-        orderTimeoutService.scheduleOrderTimeout(order.getId(), 1);
+        orderTimeoutService.scheduleOrderTimeout(order.getId(), 15);
         
         log.info("订单创建成功：orderNo={}, userId={}, voucherId={}", 
                 order.getOrderNo(), userId, voucherId);
