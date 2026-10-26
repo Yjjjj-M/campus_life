@@ -27,4 +27,3 @@ data/
 # 前端需要部署，不能忽略 campus-frontend/
 # 但忽略其中的 node_modules（太大）
 campus-frontend/node_modules/
-campus-frontend/dist/
