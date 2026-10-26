@@ -21,8 +21,10 @@ campus-backend/tokens.csv
 # 忽略文档
 docs/
 
-# 忽略前端（如果暂时不部署前端）
-campus-frontend/
-
 # 忽略数据目录
 data/
+
+# 前端需要部署，不能忽略 campus-frontend/
+# 但忽略其中的 node_modules（太大）
+campus-frontend/node_modules/
+campus-frontend/dist/
