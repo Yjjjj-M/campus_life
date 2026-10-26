@@ -2,11 +2,11 @@ import request from './request'
 
 // 订单接口类型
 export interface Order {
-  id: number
+  id: string
   orderNo: string
-  userId: number
-  voucherId: number
-  shopId: number
+  userId: string
+  voucherId: string
+  shopId: string
   status: number
   payValue: number
   actualValue: number
@@ -22,8 +22,8 @@ export interface Order {
 }
 
 export interface OrderDetail {
-  id: number
-  orderId: number
+  id: string
+  orderId: string
   voucherTitle: string
   voucherSubTitle?: string
   shopName: string
@@ -48,12 +48,12 @@ export const userOrderApi = {
   },
 
   // 支付订单
-  payOrder: (orderId: number) => {
+  payOrder: (orderId: string) => {
     return request.post<void>(`/user/order/${orderId}/pay`)
   },
 
   // 取消订单
-  cancelOrder: (orderId: number) => {
+  cancelOrder: (orderId: string) => {
     return request.post<void>(`/user/order/${orderId}/cancel`)
   },
 
@@ -65,7 +65,7 @@ export const userOrderApi = {
   },
 
   // 查询订单详情
-  getOrderDetail: (orderId: number) => {
+  getOrderDetail: (orderId: string) => {
     return request.get<Order>(`/user/order/${orderId}`)
   }
 }
@@ -82,12 +82,12 @@ export const adminOrderApi = {
   },
 
   // 查询订单详情
-  getOrderDetail: (orderId: number) => {
+  getOrderDetail: (orderId: string) => {
     return request.get<Order>(`/admin/order/${orderId}`)
   },
 
   // 核销订单
-  useOrder: (orderId: number) => {
+  useOrder: (orderId: string) => {
     return request.post<void>(`/admin/order/${orderId}/use`)
   }
 }

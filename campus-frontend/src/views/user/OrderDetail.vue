@@ -102,7 +102,7 @@ const loading = ref(true)
 // 加载订单详情
 const loadOrder = async () => {
   try {
-    const orderId = parseInt(route.params.id as string)
+    const orderId = route.params.id as string
     const res = await userOrderApi.getOrderDetail(orderId)
     order.value = res.data
   } catch (error) {
