@@ -34,8 +34,8 @@ mybatis-plus:
   type-aliases-package: com.campus.entity
   configuration:
     map-underscore-to-camel-case: true
-    # 生产环境关闭 SQL 日志
-    log-impl: org.apache.ibatis.logging.nop.NopLogging
+    # 生产环境使用 SLF4J 日志（配合 logging.level 控制输出级别）
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 
 logging:
   level:
