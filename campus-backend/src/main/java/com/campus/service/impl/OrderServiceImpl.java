@@ -304,14 +304,16 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private void fillOrderDisplayInfo(List<Order> orders) {
         if (orders == null || orders.isEmpty()) return;
         
-        // 收集所有 voucherId、shopId、userId
+        // 收集所有 voucherId、shopId、userId（过滤掉 null 值）
         List<Long> voucherIds = orders.stream()
                 .map(Order::getVoucherId)
+                .filter(id -> id != null)
                 .distinct()
                 .collect(Collectors.toList());
         
         List<Long> shopIds = orders.stream()
                 .map(Order::getShopId)
+                .filter(id -> id != null)
                 .distinct()
                 .collect(Collectors.toList());
         
@@ -321,13 +323,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 .collect(Collectors.toList());
         
         // 批量查询
-        Map<Long, String> voucherTitleMap = voucherService.listByIds(voucherIds)
-                .stream()
-                .collect(Collectors.toMap(Voucher::getId, Voucher::getTitle, (a, b) -> a));
+        Map<Long, String> voucherTitleMap = voucherIds.isEmpty() ? 
+                new HashMap<>() : 
+                voucherService.listByIds(voucherIds)
+                        .stream()
+                        .collect(Collectors.toMap(Voucher::getId, Voucher::getTitle, (a, b) -> a));
         
-        Map<Long, String> shopNameMap = shopService.listByIds(shopIds)
-                .stream()
-                .collect(Collectors.toMap(Shop::getId, Shop::getName, (a, b) -> a));
+        Map<Long, String> shopNameMap = shopIds.isEmpty() ? 
+                new HashMap<>() : 
+                shopService.listByIds(shopIds)
+                        .stream()
+                        .collect(Collectors.toMap(Shop::getId, Shop::getName, (a, b) -> a));
         
         Map<Long, User> userMap = userService.listByIds(userIds)
                 .stream()
@@ -335,8 +341,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         
         // 填充信息
         for (Order order : orders) {
-            order.setVoucherTitle(voucherTitleMap.getOrDefault(order.getVoucherId(), "已删除"));
-            order.setShopName(shopNameMap.getOrDefault(order.getShopId(), "已删除"));
+            // 处理 voucherTitle
+            if (order.getVoucherId() == null) {
+                order.setVoucherTitle("商品订单");
+            } else {
+                order.setVoucherTitle(voucherTitleMap.getOrDefault(order.getVoucherId(), "已删除"));
+            }
+            
+            // 处理 shopName
+            if (order.getShopId() == null) {
+                order.setShopName("多商品订单");
+            } else {
+                order.setShopName(shopNameMap.getOrDefault(order.getShopId(), "已删除"));
+            }
             
             User user = userMap.get(order.getUserId());
             if (user != null) {
