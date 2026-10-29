@@ -1,0 +1,224 @@
+/* ========================================
+   校园生活平台 - 全局样式
+   ======================================== */
+
+:root {
+  --primary-color: #ff6b6b;
+  --primary-dark: #ee5a6f;
+  --secondary-color: #4ecdc4;
+  --accent-color: #ffe66d;
+  --text-dark: #2d3436;
+  --text-gray: #636e72;
+  --text-light: #b2bec3;
+  --bg-light: #f8f9fa;
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* 通用容器 */
+.page-container {
+  min-height: 100vh;
+  background: var(--bg-light);
+}
+
+/* 现代头部 */
+.modern-header {
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.modern-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  background: var(--bg-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 现代卡片 */
+.modern-card {
+  border-radius: var(--border-radius) !important;
+  border: none !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: var(--transition) !important;
+  overflow: hidden;
+}
+
+.modern-card:hover {
+  box-shadow: var(--card-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* 价格样式 */
+.price-tag {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.price-tag-small {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.price-original {
+  color: var(--text-light);
+  text-decoration: line-through;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+/* 评分样式 */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d63031;
+}
+
+/* 标签样式 */
+.tag-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(78, 205, 196, 0.1);
+  color: var(--secondary-color);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 按钮增强 */
+.btn-primary {
+  background: var(--bg-gradient) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: var(--transition) !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dfe6e9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b2bec3;
+}
+
+/* 加载动画 */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Hero Banner */
+.hero-banner {
+  background: var(--bg-gradient);
+  padding: 60px 32px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hero-banner h1 {
+  font-size: 36px;
+  margin: 0 0 12px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-banner p {
+  font-size: 16px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .modern-header {
+    padding: 12px 16px;
+  }
+  
+  .modern-header h1 {
+    font-size: 18px;
+  }
+  
+  .hero-banner {
+    padding: 40px 16px;
+  }
+  
+  .hero-banner h1 {
+    font-size: 24px;
+  }
+}

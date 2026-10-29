@@ -7,13 +7,7 @@
 <script setup lang="ts">
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import './styles/global.css'
 
 const locale = zhCn
 </script>
-
-<style>
-body {
-  margin: 0;
-  padding: 0;
-}
-</style>
