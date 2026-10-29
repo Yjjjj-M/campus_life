@@ -29,8 +29,8 @@
             <span>管理</span>
           </div>
           <div class="user-info" @click="handleLogout">
-            <div class="avatar">{{ userStore.nickname?.charAt(0) || '👤' }}</div>
-            <span class="user-name">{{ userStore.nickname }}</span>
+            <div class="avatar">{{ userStore.userInfo?.nickname?.charAt(0) || '👤' }}</div>
+            <span class="user-name">{{ userStore.userInfo?.nickname }}</span>
           </div>
         </div>
       </div>
